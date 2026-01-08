@@ -1,0 +1,69 @@
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowRightIcon, EyeIcon, RocketIcon, SparklesIcon, UserIcon } from "lucide-react";
+import Link from "next/link";
+import StatsCard from "./stats-card";
+
+const LiveBadge = () => (
+    <Badge variant="secondary" className="px-4 py-2 mb-8 text-sm">
+        <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span className="animate-ping inline-flex rounded-full h-2 w-2 bg-primary"></span>
+        </span>
+        <span className="text-muted-foreground">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+    </Badge>
+);
+
+const statsData = [
+    {
+        icon: RocketIcon,
+        value: "2.5K+",
+        label: "Projects Launched",
+        hasBorder: true
+    },
+    {
+        icon: UserIcon,
+        value: "10K+",
+        label: "Active Creators",
+        hasBorder: true
+    },
+    {
+        icon: EyeIcon,
+        value: "50K+",
+        label: "Monthly Visitors",
+    }
+];
+
+export default function HeroSection() {
+    return (
+        <section className="relative overflow-hidden bg-linear-to-b from-violet-200 to-fuchsia-500/20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col items-center justify-center lg:py-24 py-12 space-y-6 text-center">
+                    <LiveBadge />
+                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-5xl">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+                    <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio maiores unde ex excepturi nesciunt. Ut voluptate natus,
+                        quibusdam quam alias quos enim debitis praesentium totam, vero ea itaque?
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 mb-16">
+                        <Button asChild size="lg" className="text-base px-8 shadow-lg">
+                            <Link href="/submit">
+                                <SparklesIcon className="size-5" />Share Yout Project
+                            </Link>
+                        </Button>
+                        <Button variant="secondary" asChild size="lg" className="text-base px-8 shadow-lg">
+                            <Link href="/submit">
+                                Explorer Project
+                                <ArrowRightIcon className="size-5" />
+                            </Link>
+                        </Button>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-2xl w-full">
+                        {statsData.map(stat => <StatsCard key={stat.label} {...stat} />)}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    );
+}
